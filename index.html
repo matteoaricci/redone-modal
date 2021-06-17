@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/js/bootstrap-switch.js"
+      integrity="sha512-ijvMECAJbR3p1HtXhJGG7fo0B/hXB0SihjLr6XAP4Qplq6uqNcssqkpYHvc6+M2c7+P5Zu9QXDoixKTm3pphEw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/css/bootstrap2/bootstrap-switch.css"
+      integrity="sha512-8CKt34WMke3YsODSwUB/36Y/HU/yoREvJu5sGpOnFkVigoRrYrRtwQgwLKgRenAGN7HRCBpXa/L16AErXPBkZg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <button
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#torque-set-modal"
+      type="button"
+    >
+      Open Modal
+    </button>
+    <div id="torque-set-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <header class="content-header">
+            <div class="main-header">
+              <button class="btn btn-primary back-to-map">Back to Map</button>
+              <div class="header-title-container">
+                <div class="content-title">Generate Torque Sheet</div>
+                <div class="content-subtitle">VSP #0010 - RAILCAR</div>
+              </div>
+            </div>
+            <div class="header-buttons">
+              <button class="btn btn-primary customize-values">
+                Customize Values
+              </button>
+              <button class="btn btn-primary continue-header">Continue</button>
+            </div>
+          </header>
+          <div class="modal-body">
+            <header class="modal-body-header">
+              <div class="body-header-title">Select Gasket</div>
+              <div class="progress-bar-info">
+                <div class="current-step-text">
+                  Step <span class="step-number">1</span> of 3
+                </div>
+                <div class="progress-bar-container">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    area-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+            </header>
+            <form id="modal-form">
+              <section
+                class="step-one step"
+                data-stepTitle="Select gasket"
+                data-step="1"
+              >
+                <header class="form-header">
+                  Select material and thickness to specify gasket
+                </header>
+                <section class="form-body">
+                  <div class="form-sect">
+                    <div class="select-field">
+                      <label for="material">Material</label>
+                      <select name="material" id="step-one-material"></select>
+                    </div>
+                    <div class="select-field">
+                      <label for="thickness">Thickness</label>
+                      <select name="thickness" id="step-one-thickness"></select>
+                    </div>
+                  </div>
+                  <button class="find-gasket btn btn-primary">
+                    Find gaskets
+                  </button>
+                </section>
+                <footer class="form-footer">
+                  <div class="results-info">Results Found Here</div>
+                  <div class="gaskets-table container">
+                    <div class="table-head row">
+                      <header class="col">Gasket</header>
+                      <header class="col">Material</header>
+                      <header class="col">Thickness</header>
+                      <header class="col">Action</header>
+                    </div>
+                    <div class="table-entry row">
+                      <div class="select-col col">
+                        <input type="radio" />
+                        <div>GASKET TITLE HERE</div>
+                      </div>
+                      <div class="col">GASKET MATERIAL</div>
+                      <div class="col">GASKET THICKNESS</div>
+                      <div class="col">ACTION</div>
+                    </div>
+                  </div>
+                  <div class="button-container">
+                    <button class="customize-values btn btn-primary">
+                      Customize Values
+                    </button>
+                    <button class="continue btn btn-primary">Continue</button>
+                  </div>
+                </footer>
+              </section>
+              <section
+                class="step-two step"
+                data-stepTitle="Select torque values"
+                data-step="2"
+              >
+                <header class="form-header">
+                  Select which torque values to include in your document
+                  <div class="filter-toggle custom-control custom-switch">
+                    <input
+                      class="custom-control-input"
+                      type="checkbox"
+                      name="filter-toggle-switch"
+                      id="filter-switch"
+                    />
+                    <label class="custom-control-label" for="filter-switch">
+                      Use a filter preset
+                    </label>
+                  </div>
+                </header>
+                <section class="form-body no-filter-preset">
+                  <div class="form-sect bolt-options">
+                    <section class="number-bolt">
+                      <header>Number of bolts</header>
+                      <div class="options-container"></div>
+                    </section>
+                    <section class="bolt-diameter">
+                      <header>Bolt Diameters</header>
+                      <div class="options-container"></div>
+                    </section>
+                    <section class="bolt-grade">
+                      <header>Bolt Grades</header>
+                      <div class="options-container"></div>
+                    </section>
+                  </div>
+                  <div class="form-sect preset-options">
+                    <header>Save as new preset (optional)</header>
+                    <div class="preset-form-container">
+                      <input type="text" />
+                      <button class="save-preset">Save</button>
+                    </div>
+                  </div>
+                </section>
+                <section class="form-body filter-preset">
+                  <select name="selected-preset" id="selected-preset">
+                    <option value="">Saved preset name</option>
+                  </select>
+                  <div class="preset-info-container">
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="29"
+                        height="29"
+                        rx="3.5"
+                        fill="white"
+                        stroke="#004B8E"
+                      />
+                      <path
+                        d="M20.5798 15.7425L20.5723 15.7575C20.6023 15.51 20.6323 15.255 20.6323 15C20.6323 14.745 20.6098 14.505 20.5798 14.2575L20.5873 14.2725L22.4173 12.8325L20.5948 9.6675L18.4423 10.5375L18.4498 10.545C18.0598 10.245 17.6323 9.99 17.1673 9.795H17.1748L16.8298 7.5H13.1773L12.8473 9.8025H12.8548C12.3898 9.9975 11.9623 10.2525 11.5723 10.5525L11.5798 10.545L9.41984 9.6675L7.58984 12.8325L9.41984 14.2725L9.42734 14.2575C9.39734 14.505 9.37484 14.745 9.37484 15C9.37484 15.255 9.39734 15.51 9.43484 15.7575L9.42734 15.7425L7.85234 16.98L7.60484 17.175L9.42734 20.325L11.5873 19.4625L11.5723 19.4325C11.9698 19.74 12.3973 19.995 12.8698 20.19H12.8473L13.1848 22.5H16.8223C16.8223 22.5 16.8448 22.365 16.8673 22.185L17.1523 20.1975H17.1448C17.6098 20.0025 18.0448 19.7475 18.4423 19.44L18.4273 19.47L20.5873 20.3325L22.4098 17.1825C22.4098 17.1825 22.3048 17.0925 22.1623 16.9875L20.5798 15.7425ZM14.9998 17.625C13.5523 17.625 12.3748 16.4475 12.3748 15C12.3748 13.5525 13.5523 12.375 14.9998 12.375C16.4473 12.375 17.6248 13.5525 17.6248 15C17.6248 16.4475 16.4473 17.625 14.9998 17.625Z"
+                        fill="#004B8E"
+                      />
+                    </svg>
+                    <div class="preset-labels">
+                      <div class="num-bolts">Number of Bolts</div>
+                      <div class="bolt-diameters">Bolt Diameters</div>
+                      <div class="bolt-grades">Bolt Grades</div>
+                    </div>
+                    <div class="preset-values">
+                      <div class="num-bolts-value">2, 3</div>
+                      <div class="bolt-diam-value">0.625"</div>
+                      <div class="bolt-grade-value">High, Premium</div>
+                    </div>
+                  </div>
+                </section>
+                <footer class="form-footer">
+                  <div class="torque-values-preview">
+                    <header class="values-header">
+                      Preview of Torque Values
+                      <div class="value-sub">
+                        <div>Material: <span>{Material Name}</span></div>
+                        <div>Target Bolt Yield: <span>{60 - 80%}</span></div>
+                      </div>
+                    </header>
+                    <div class="values-category">
+                      <div>Bolt Grade</div>
+                      <div>0.625" x 2 Bolts</div>
+                      <div>0.625" x 3 Bolts</div>
+                    </div>
+                    <div class="values-entry">
+                      <div>High</div>
+                      <div>100 / 120</div>
+                      <div>100 / 120</div>
+                    </div>
+                    <div class="values-footer">ft-lb / max</div>
+                  </div>
+                  <button class="btn btn-primary continue">Continue</button>
+                </footer>
+              </section>
+              <section
+                class="step-three step"
+                data-stepTitle="Torque sheet printing options"
+                data-step="3"
+              >
+                <header class="form-header">
+                  Select printing options for your PDF below
+                </header>
+                <section class="form-body">
+                  <div class="dropdown-options form-sect">
+                    <div class="column">
+                      <div class="copies-option">
+                        <label for="region-dropdown">Copies</label>
+                        <select name="copies" id="copies-dropdown"></select>
+                      </div>
+                      <div class="region-option">
+                        <label for="region">Region</label>
+                        <select name="region" id="region-dropdown"></select>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="paper-size-option">
+                        <label for="paper-dropdown">Paper size</label>
+                        <select name="paper-size" id="paper-dropdown"></select>
+                      </div>
+                      <div class="language-option">
+                        <label for="language-dropdown">Language</label>
+                        <select name="language" id="language-dropdown"></select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="template-options form-sect">
+                    <header>Template</header>
+                    <div class="options">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="template-option"
+                          id="use-preprinted"
+                        />
+                        <label class="form-check-label" for="use-preprinted">
+                          Use pre-printed template
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="template-option"
+                          id="use-full-logo"
+                          checked
+                        />
+                        <label class="form-check-label" for="use-full-logo">
+                          Print full template (with logo)
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="label-options form-sect">
+                    <header>Include label?</header>
+                    <div class="options">
+                      <section class="inputs">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="label-option"
+                            id="yes-standard"
+                          />
+                          <label class="form-check-label" for="yes-standard">
+                            Yes, standard
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="label-option"
+                            id="yes-rotate"
+                          />
+                          <label class="form-check-label" for="yes-rotate">
+                            Yes, rotate 180
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="label-option"
+                            id="no"
+                          />
+                          <label class="form-check-label" for="no"> No </label>
+                        </div>
+                      </section>
+                      <section class="add-info">
+                        Generates an additional PDF with a 2x3 label that can be
+                        printed on a Zebra label printer
+                      </section>
+                    </div>
+                  </div>
+                  <div class="repair-options form-sect">
+                    <header>Repair Shop</header>
+                    <div class="options">
+                      <section class="inputs">
+                        <select name="repair-options" id="repair-options">
+                          <option value="">Select Options</option>
+                        </select>
+                      </section>
+                      <section class="add-info">
+                        The Rapair Shop part number will be included on the
+                        label if available.
+                      </section>
+                    </div>
+                  </div>
+                </section>
+                <footer class="form-footer">
+                  <button class="btn btn-primary generate-pdf">
+                    Generate PDF
+                  </button>
+                </footer>
+              </section>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
